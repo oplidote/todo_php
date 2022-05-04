@@ -352,7 +352,7 @@ export default {
   cursor: pointer;
 }
 .detail:hover {
-  color: hotpink;
+  color: red;
 }
 
 .bt-write {
@@ -360,7 +360,7 @@ export default {
 }
 
 .active {
-  background: hotpink;
+  background-color: #0069d9;
   color: #fff;
 }
 
