@@ -1,8 +1,10 @@
 <template>
   <div class="container">
+    <header class="list-header">
+      <span>Todo List</span>
+    </header>
     <div class="card">
       <div class="card-header">
-        Todo List
         <button class="btn btn-primary bt-write" @click="moveCreate">
           글작성
         </button>
@@ -43,10 +45,8 @@
                   v-model="item.active"
                   @change="toggleTodo(item)"
                 />
-                <span
-                  class="form-check-label"
-                >
-                  {{ item.active ? "완료" : "진행중" }}
+                <span class="form-check-label" style="color: red" :class="{active : item.active }">
+                  {{ item.active ? "완료" : "미완료" }}
                 </span>
               </td>
               <td>
@@ -70,9 +70,7 @@
         <!-- 현재페이지가 1페이지라면 보일 필요없다. -->
         <li class="page-item" v-show="page_now != 1">
           <!-- 이전페이지를 보여줌. (page_now - 1) -->
-          <a class="page-link" href="#" @click="getInfo(page_now - 1)"
-            >Previous</a
-          >
+          <a class="page-link" href="#" @click="getInfo(page_now - 1)">Previous</a>
         </li>
 
         <li class="page-item" v-for="item in page_total" :key="item">
@@ -346,11 +344,23 @@ export default {
 </script>
 
 <style>
+.list-header {
+  padding: 5% 0;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
 .detail {
-  text-decoration: underline;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #000;
   cursor: pointer;
 }
+
 .detail:hover {
   color: red;
 }
@@ -358,14 +368,14 @@ export default {
 .bt-write {
   float: right;
 }
-
+button {
+  white-space: nowrap !important;
+}
 .active {
-  background-color: #0069d9;
-  color: #fff;
+  color: #309f30 !important;
 }
 
 .search {
   width: 50%;
-  float: right;
 }
 </style>
